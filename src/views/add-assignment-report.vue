@@ -213,7 +213,7 @@ async function sendData() {
     }
     catch (error) {
         // Handle errors (e.g., display error message, retry logic)
-        showFailureAlert();
+        showFailureAlert("Không thể gửi nhận xét");
     }
 
 }
