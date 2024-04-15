@@ -74,7 +74,7 @@ const fetchData = () => {
                 dateOfBirth: item.dateOfBirth,
                 phoneNumber: item.phoneNumber,
                 id: item.id,
-                url: `${window.location.origin}/${item.slug}`,
+                url: `${window.location.origin}/nhan-xet/${item.slug}`,
                 secretCode: item.secretCode
             }));
 
