@@ -1,0 +1,87 @@
+<div class="table-responsive">
+    <table class="table-auto">
+        <thead>
+            <tr>
+                <th>Họ tên</th>
+                <th>Link đề bài</th>
+                <th>Link đáp án</th>
+                <th>Số câu làm đúng</th>
+                <th>Số câu làm được</th>
+                <th></th>
+                <th>Link scan bài làm</th>
+                <th>Nhận xét bài làm</th>
+            </tr>
+        </thead>
+        <tbody>
+            <template v-for="(student, index) in students" :key="student.studentId">
+                <tr>
+                    <td hidden><input type="text" v-model="student.studentId"></td>
+                    <td class="whitespace-nowrap" :class="{ ' text-lime-600': student.hasAssignmentReport }">{{
+                        student.fullName }}</td>
+                    <td>
+                        <div>
+                            <input v-model="student.homeworkCorrectAnswers" type="text" placeholder="BTVN"
+                                class="form-input my-1 w-24" />
+                            <input v-model="student.classworkCorrectAnswers" type="text" placeholder="Ở lớp"
+                                class="form-input my-1 w-24" />
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <input v-model="student.homeworkCorrectAnswers" type="text" placeholder="BTVN"
+                                class="form-input my-1 w-24" />
+                            <input v-model="student.classworkCorrectAnswers" type="text" placeholder="Ở lớp"
+                                class="form-input my-1 w-24" />
+                        </div>
+                    </td>
+                    <td class="w-1/12">
+                        <!-- số câu làm đúng -->
+                        <div>
+                            <input v-model="student.homeworkCorrectAnswers" type="text" placeholder="BTVN"
+                                class="form-input my-1 w-24" />
+                            <input v-model="student.classworkCorrectAnswers" type="text" placeholder="Ở lớp"
+                                class="form-input my-1 w-24" />
+                        </div>
+                    </td>
+                    <td class="w-1/12">
+                        <!-- số câu làm được -->
+                        <div class="w-3/5">
+                            <input v-model="student.homeworkAnswers" type="text" placeholder="BTVN"
+                                class="form-input my-1 w-24" />
+                            <input v-model="student.classworkAnswers" type="text" placeholder="Ở lớp"
+                                class="form-input my-1 w-24" />
+                        </div>
+                    </td>
+                    <td class="w-1/12">
+                        <!-- tổng số câu -->
+                        <div class="w-3/5">
+                            <input v-model="student.homeworkTotalQuestions" type="text" placeholder="BTVN"
+                                class="form-input my-1 w-24" />
+                            <input v-model="student.classworkTotalQuestions" type="text" placeholder="Ở lớp"
+                                class="form-input my-1 w-24" />
+                        </div>
+                    </td>
+                    <td>
+                        <!-- link -->
+                        <div>
+                            <input v-model="student.homeworkUrl" type="text" placeholder="BTVN"
+                                class="form-input my-1" />
+                            <input v-model="student.classworkUrl" type="text" placeholder="Ở lớp"
+                                class="form-input my-1" />
+                        </div>
+                    </td>
+
+                    <td>
+                        <!-- nx bài làm -->
+                        <div>
+                            <input v-model="student.homeworkComment" type="text" placeholder="BTVN"
+                                class="form-input my-1" />
+                            <input v-model="student.classworkComment" type="text" placeholder="Ở lớp"
+                                class="form-input my-1" />
+                        </div>
+                    </td>
+                </tr>
+            </template>
+        </tbody>
+    </table>
+</div>
