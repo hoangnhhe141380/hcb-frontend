@@ -92,7 +92,6 @@ const handleLogin = async () => {
         };
 
         const { data } = await fetchLogin(params);
-        console.log('help me');
         correctAccount.value = true;
 
         localStorageHelper.store(LOCAL_STORAGE_AUTH, data.token);

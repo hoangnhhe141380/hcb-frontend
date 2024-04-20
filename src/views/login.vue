@@ -52,10 +52,6 @@
                                 class="btn btn-gradient !mt-6 w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]">
                                 Đăng nhập
                             </button>
-                            <button @click="deleteToken" type="submit"
-                                class="btn btn-gradient !mt-6 w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]">
-                                delete token
-                            </button>
                         </form>
                     </div>
                 </div>
