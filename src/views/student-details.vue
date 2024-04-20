@@ -73,10 +73,18 @@
                                         </div>
                                         <div>
                                             <label>Trường</label>
-                                            <input v-model="studentData.school" type=" text" class="form-input"
+                                            <input v-model="studentData.school" type="text" class="form-input"
                                                 :disabled="!isEditing" />
                                         </div>
-                                        <br>
+                                        <div>
+                                            <label>Trạng thái</label>
+                                            <select v-model="studentData.status" class="form-select"
+                                                :disabled="!isEditing">
+                                                <option :value="true">Đang học</option>
+                                                <option :value="false">Đã nghỉ</option>
+                                            </select>
+                                        </div>
+
                                         <div>
                                             <label>Link tổng hợp nhận xét</label>
                                             <a class="underline text-blue-600 hover:text-blue-800"
@@ -381,6 +389,7 @@ const studentData = ref({
     school: '',
     slug: '',
     secretCode: '',
+    status: true,
     parents: [
         parentData1.value,
         parentData2.value
@@ -417,7 +426,7 @@ function updateStudentById() {
     axios
         .put(apiUrl, studentData.value, { headers })
         .then(() => {
-            alert("Nhận xét thành công!");
+            alert("Cập nhật thông tin học sinh thành công!");
         })
         .catch(() => {
             alert("Đã có lỗi xảy ra! Không thể cập nhật học sinh");

@@ -1,6 +1,6 @@
 // @ts-nocheck
 <template>
-    <div v-if="!correctSecretCode" class="container h-screen grid place-items-center">
+    <!-- <div v-if="!correctSecretCode" class="container h-screen grid place-items-center">
         <div class="panel m-auto py-10 w-full lg:w-5/12">
             <form @submit.prevent="getReportsBySlug">
                 <div class="mt-4">
@@ -13,9 +13,10 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div> -->
 
-    <div v-if="correctSecretCode" class="container xl:mx-auto w-95 xl:w-8/12">
+    <!-- <div v-if="correctSecretCode" class="container xl:mx-auto w-95 xl:w-8/12"> -->
+    <div class="container xl:mx-auto w-95 xl:w-8/12">
         <div class="panel my-6 text-lg mx-3">
             <p><span class="font-bold">Họ tên: </span>{{ student[0] }}</p>
             <p v-if="student[1] === null"><span class="font-bold">Ngày sinh: </span></p>
@@ -93,7 +94,7 @@
                                 <h4 class="font-bold text-xl text-blue-800">III. Kết quả bài làm</h4>
                                 <ol class="list-decimal">
                                     <li class="font-semibold">Bài tập về nhà
-                                        <p class="font-normal" v-if="report.homework.result === undefined">(Chưa
+                                        <p class="font-normal" v-if="report.homework.result === '//'">(Chưa
                                             có thông tin)</p>
                                         <ul v-else class="!md:ml-6 ml-3 font-normal" style="list-style-type: circle">
                                             <li>Số câu đúng/Số câu làm được/Tổng số câu:
@@ -228,67 +229,120 @@ interface NameDob {
     dateOfBith: Date
 };
 
-async function getReportsBySlug() {
-    submittedOnce.value = true;
-    const slug = route.params.slug;
-    const jsonData = {
-        secretCode: secretCode.value,
-    };
+async function getReportsBySlug(slug) {
 
     const apiUrl = import.meta.env.VITE_APP_API_URL + `guest/reports/${slug}`;
 
     const studentInfoUrl = import.meta.env.VITE_APP_API_URL + 'guest/name-dob?id=';
 
-    await axios.post(apiUrl, jsonData)
+    await axios.get(apiUrl)
         .then(res => {
-            correctSecretCode.value = true;
-            const isSuccessful = res.status == 200;
+            const response = res.data.data;
 
-            if (isSuccessful) {
-                const response = res.data.data;
-                console.log(response);
+            response.map(rep => {
 
-                if (response.length === 0) {
-                    showFailureAlert("Học sinh chưa có nhận xét");
-                } else {
-                    response.map(rep => {
+                const report: Report = {
+                    date: dayjs(rep.date).format('DD/MM/YYYY'),
+                    generalComment: rep.generalComment !== null ? rep.generalComment : '',
+                    homeworkCompletion: rep.homeworkCompletion !== null ? rep.homeworkCompletion : '',
+                    onTime: rep.onTime !== null ? rep.onTime : '',
+                    studyingAttitude: rep.studyingAttitude !== null ? rep.studyingAttitude : '',
+                    homework: {
+                        result: `${rep?.homework.correctAnswers}/${rep?.homework.answers}/${rep?.homework.totalQuestions}`,
+                        url: rep.homework.url !== null ? rep.homework.url : '',
+                        comment: rep?.homework.comment,
+                        requirement: rep?.homework.requirement,
+                    },
+                    classwork: {
+                        result: `${rep.classwork.correctAnswers}/${rep.classwork.answers}/${rep.classwork.totalQuestions}`,
+                        url: rep.classwork.url,
+                        comment: rep.classwork.comment,
+                        requirement: rep.classwork.requirement,
+                        worksheetUrl: rep.classwork.worksheetUrl,
+                        solutionUrl: rep.classwork.solutionUrl,
+                    }
 
-                        const report: Report = {
-                            date: dayjs(rep.date).format('DD/MM/YYYY'),
-                            generalComment: rep.generalComment !== null ? rep.generalComment : '',
-                            homeworkCompletion: rep.homeworkCompletion !== null ? rep.homeworkCompletion : '',
-                            onTime: rep.onTime !== null ? rep.onTime : '',
-                            studyingAttitude: rep.studyingAttitude !== null ? rep.studyingAttitude : '',
-                            homework: {
-                                result: `${rep?.homework.correctAnswers}/${rep?.homework.answers}/${rep?.homework.totalQuestions}`,
-                                url: rep.homework.url !== null ? rep.homework.url : '',
-                                comment: rep?.homework.comment,
-                                requirement: rep?.homework.requirement,
-                            },
-                            classwork: {
-                                result: `${rep.classwork.correctAnswers}/${rep.classwork.answers}/${rep.classwork.totalQuestions}`,
-                                url: rep.classwork.url,
-                                comment: rep.classwork.comment,
-                                requirement: rep.classwork.requirement,
-                                worksheetUrl: rep.classwork.worksheetUrl,
-                                solutionUrl: rep.classwork.solutionUrl,
-                            }
-
-                        }
-                        console.log('report: ' + report.classwork.requirement);
-                        reports.value.push(report);
-                    });
-
-                    const studentId = response[0].studentId; // Assuming studentId is the same for all reports
-                    return axios.get(studentInfoUrl + studentId);
                 }
-            }
-        })
+                console.log('report hw: ' + report.homework.result);
+                reports.value.push(report);
+            });
+
+            const studentId = response[0].studentId; // Assuming studentId is the same for all reports
+            return axios.get(studentInfoUrl + studentId);
+
+        }
+        )
         .then((res2) => {
             // @ts-ignore
             student.value.push(res2.data.data[0][0], res2.data.data[0][1]);
         })
-
 }
+
+// async function getReportsBySlug() {
+//     submittedOnce.value = true;
+//     const slug = route.params.slug;
+//     const jsonData = {
+//         secretCode: secretCode.value,
+//     };
+
+//     const apiUrl = import.meta.env.VITE_APP_API_URL + `guest/reports/${slug}`;
+
+//     const studentInfoUrl = import.meta.env.VITE_APP_API_URL + 'guest/name-dob?id=';
+
+//     await axios.post(apiUrl, jsonData)
+//         .then(res => {
+//             correctSecretCode.value = true;
+//             const isSuccessful = res.status == 200;
+
+//             if (isSuccessful) {
+//                 const response = res.data.data;
+//                 console.log(response);
+
+//                 if (response.length === 0) {
+//                     showFailureAlert("Học sinh chưa có nhận xét");
+//                 } else {
+//                     response.map(rep => {
+
+//                         const report: Report = {
+//                             date: dayjs(rep.date).format('DD/MM/YYYY'),
+//                             generalComment: rep.generalComment !== null ? rep.generalComment : '',
+//                             homeworkCompletion: rep.homeworkCompletion !== null ? rep.homeworkCompletion : '',
+//                             onTime: rep.onTime !== null ? rep.onTime : '',
+//                             studyingAttitude: rep.studyingAttitude !== null ? rep.studyingAttitude : '',
+//                             homework: {
+//                                 result: `${rep?.homework.correctAnswers}/${rep?.homework.answers}/${rep?.homework.totalQuestions}`,
+//                                 url: rep.homework.url !== null ? rep.homework.url : '',
+//                                 comment: rep?.homework.comment,
+//                                 requirement: rep?.homework.requirement,
+//                             },
+//                             classwork: {
+//                                 result: `${rep.classwork.correctAnswers}/${rep.classwork.answers}/${rep.classwork.totalQuestions}`,
+//                                 url: rep.classwork.url,
+//                                 comment: rep.classwork.comment,
+//                                 requirement: rep.classwork.requirement,
+//                                 worksheetUrl: rep.classwork.worksheetUrl,
+//                                 solutionUrl: rep.classwork.solutionUrl,
+//                             }
+
+//                         }
+//                         console.log('report: ' + report.classwork.requirement);
+//                         reports.value.push(report);
+//                     });
+
+//                     const studentId = response[0].studentId; // Assuming studentId is the same for all reports
+//                     return axios.get(studentInfoUrl + studentId);
+//                 }
+//             }
+//         })
+//         .then((res2) => {
+//             // @ts-ignore
+//             student.value.push(res2.data.data[0][0], res2.data.data[0][1]);
+//         })
+// }
+
+onMounted(() => {
+    getReportsBySlug(route.params.slug)
+})
+
 
 </script>

@@ -20,7 +20,12 @@
                             class="text-primary hover:underline">
                             Chi tiết
                         </router-link>
-
+                    </template>
+                    <template #url="data">
+                        <router-link :to="{ name: 'guest-reports', params: { slug: data.value.slug } }"
+                            class="text-primary hover:underline">
+                            /{{ data.value.slug }}
+                        </router-link>
                     </template>
                 </vue3-datatable>
             </div>
@@ -46,7 +51,7 @@ const cols =
         { field: 'dateOfBirth', title: 'Ngày sinh' },
         { field: 'phoneNumber', title: 'Số điện thoại' },
         { field: 'details', title: 'Thông tin chi tiết' },
-        { field: 'url', title: 'Link' },
+        { field: 'url', title: 'Link TH nhận xét' },
         { field: 'secretCode', title: 'Mã bảo vệ' }
     ]) || [];
 
@@ -74,6 +79,7 @@ const fetchData = () => {
                 dateOfBirth: item.dateOfBirth,
                 phoneNumber: item.phoneNumber,
                 id: item.id,
+                slug: item.slug,
                 url: `${window.location.origin}/nhan-xet/${item.slug}`,
                 secretCode: item.secretCode
             }));

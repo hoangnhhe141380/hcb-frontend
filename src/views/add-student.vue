@@ -37,7 +37,7 @@
                     <div>
                         <div class="mb-4">
                             <label>Tên phụ huynh 1</label>
-                            <input v-model="parentData1.name" type=" text" class="form-input" required />
+                            <input v-model="parentData1.name" type=" text" class="form-input" />
                         </div>
                         <div class="mb-4">
                             <label>SĐT phụ huynh 1</label>

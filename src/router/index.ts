@@ -106,7 +106,7 @@ const routes: RouteRecordRaw[] = [
         name: 'guest-reports',
         meta: { layout: 'auth',
             requiresAuth: false,
-         },
+        },
     },
     {
         path: '/nguoi-dung',
