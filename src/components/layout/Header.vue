@@ -63,7 +63,7 @@
                                         </div>
                                     </li>
                                     <li class="border-t border-white-light dark:border-white-light/10">
-                                        <router-link to="dang-nhap" class="text-danger !py-3" @click="signOut">
+                                        <router-link to="/dang-nhap" class="text-danger !py-3" @click="signOut">
                                             <icon-logout class="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 rotate-90 shrink-0" />
                                             Đăng xuất
                                         </router-link>
