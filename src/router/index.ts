@@ -17,7 +17,7 @@ const routes: RouteRecordRaw[] = [
         },
     },
     {
-        path: '/login',
+        path: '/dang-nhap',
         component: () => import('../views/login.vue'),
         name: 'login',
         meta: { layout: 'auth' },
@@ -59,7 +59,7 @@ const routes: RouteRecordRaw[] = [
     //     props: true,
     // },
     {
-        path: '/attendances',
+        path: '/diem-danh',
         component: () => import('../views/attendances.vue'),
         name: 'attendances',
         props: true,
@@ -83,7 +83,7 @@ const routes: RouteRecordRaw[] = [
         props: true, // Pass the ID as a prop to the component
     },
     {
-        path: '/fees',
+        path: '/hoc-phi',
         component: () => import('../views/fees.vue'),
         name: 'fees',
         props: true,
@@ -95,7 +95,7 @@ const routes: RouteRecordRaw[] = [
         props: true, // Pass the ID as a prop to the component
     },
     {
-        path: '/file-uploading',
+        path: '/nhap-bang-file',
         component: () => import('../views/file-uploading.vue'), // Create a component for displaying student details
         name: 'file-uploading', // Give the route a name for easier navigation
         props: true, // Pass the ID as a prop to the component
