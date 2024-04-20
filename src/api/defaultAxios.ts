@@ -33,7 +33,7 @@ class DefaultService {
         if (RESPONSE_STATUS.FAIL.indexOf(error?.response?.status) > -1) {
             localStorageHelper.remove(LOCAL_STORAGE_AUTH);
             const evt = new CustomEvent('rollbackRoute', {
-                detail: '/auth/boxed-signin',
+                detail: '/dang-nhap',
             });
             window.dispatchEvent(evt);
         }
