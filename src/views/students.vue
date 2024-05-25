@@ -27,6 +27,10 @@
                             /{{ data.value.slug }}
                         </router-link>
                     </template>
+                    <template #status="data">
+                        <p class="text-red-600" v-if="data.value.status === false">Đã nghỉ</p>
+                        <p v-else>Đang học</p>
+                    </template>
                 </vue3-datatable>
             </div>
         </div>
@@ -52,7 +56,7 @@ const cols =
         { field: 'phoneNumber', title: 'Số điện thoại' },
         { field: 'details', title: 'Thông tin chi tiết' },
         { field: 'url', title: 'Link TH nhận xét' },
-        { field: 'secretCode', title: 'Mã bảo vệ' }
+        { field: 'status', title: 'Trạng thái' }
     ]) || [];
 
 
@@ -81,11 +85,10 @@ const fetchData = () => {
                 id: item.id,
                 slug: item.slug,
                 url: `${window.location.origin}/nhan-xet/${item.slug}`,
-                secretCode: item.secretCode
+                status: item.status
             }));
 
             rows.value = mappedData;
-
         })
         .catch((error) => {
             console.error('Error fetching data:', error);

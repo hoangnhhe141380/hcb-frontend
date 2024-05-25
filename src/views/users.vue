@@ -15,16 +15,6 @@
                     lastArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M11 19L17 12L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M6.99976 19L12.9998 12L6.99976 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg> '
                     previousArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M15 5L9 12L15 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
                     nextArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'>
-                    <template #details="data">
-                        <router-link :to="{ name: 'student', params: { id: data.value.id } }"
-                            class="text-primary hover:underline">
-                            Chi tiết
-                        </router-link>
-                        <!-- <router-link :to="{ name: 'student', params: { slug: data.value.slug } }"
-                            class="text-primary hover:underline">
-                            Chi tiết
-                        </router-link> -->
-                    </template>
                 </vue3-datatable>
             </div>
         </div>
@@ -40,15 +30,12 @@ import { useMeta } from '@/composables/use-meta';
 import { RESPONSE_STATUS, LOCAL_STORAGE_AUTH } from '@/utils/constants';
 import { localStorageHelper } from '@/utils/helper';
 
-useMeta({ title: 'Học sinh' });
+useMeta({ title: 'Người dùng' });
 const search = ref('');
 const cols =
     ref([
         { field: 'no', title: 'STT', isUnique: true },
-        { field: 'fullName', title: 'Họ tên' },
-        { field: 'dateOfBirth', title: 'Ngày sinh' },
-        { field: 'phoneNumber', title: 'Số điện thoại' },
-        { field: 'details', title: 'Thông tin chi tiết' },
+        { field: 'fullName', title: 'Họ tên' }
     ]) || [];
 
 
@@ -59,7 +46,7 @@ const rows = ref(
 
 const fetchData = () => {
 
-    const apiUrl = import.meta.env.VITE_APP_API_URL + 'admin/students';
+    const apiUrl = import.meta.env.VITE_APP_API_URL + 'admin/users';
 
     const headers = {
         'Authorization': 'Bearer ' + localStorageHelper.get(LOCAL_STORAGE_AUTH),
@@ -71,10 +58,7 @@ const fetchData = () => {
             // Map the data to match the 'cols' structure
             const mappedData = data.map((item, index) => ({
                 no: index + 1,
-                fullName: item.fullName,
-                dateOfBirth: item.dateOfBirth,
-                phoneNumber: item.phoneNumber,
-                id: item.id
+                fullName: item.fullName
             }));
 
             rows.value = mappedData;

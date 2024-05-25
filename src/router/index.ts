@@ -16,22 +16,10 @@ const routes: RouteRecordRaw[] = [
             requiresAuth: true,
         },
     },
-    {
-        path: '/dang-nhap',
-        component: () => import('../views/login.vue'),
-        name: 'login',
-        meta: { layout: 'auth' },
-    },
-    {
-        path: '/them-nhan-xet-bai-lam',
-        component: () => import('../views/add-assignment-report.vue'),
-        name: 'add-assignment-report',
-        props: true,
-    },
     // {
     //     path: '/nhan-xet-bai-lam',
-    //     component: () => import('../views/add-assignment-report.vue'),
-    //     name: 'add-assignment-report',
+    //     component: () => import('../views/assignment-reports.vue'),
+    //     name: 'assignment-reports',
     //     props: true,
     // },
     {
@@ -41,11 +29,17 @@ const routes: RouteRecordRaw[] = [
         props: true,
     },
     {
-        path: '/them-nhan-xet-sau-buoi-hoc',
-        component: () => import('../views/add-session-reports.vue'),
-        name: 'add-session-reports',
+        path: '/them-nhan-xet-bai-lam',
+        component: () => import('../views/add-assignment-report.vue'),
+        name: 'add-assignment-report',
         props: true,
     },
+    // {
+    //     path: '/them-nhan-xet-sau-buoi-hoc',
+    //     component: () => import('../views/add-session-report.vue'),
+    //     name: 'add-session-reports',
+    //     props: true,
+    // },
     {
         path: '/lessons/add',
         component: () => import('../views/add-lesson.vue'),
