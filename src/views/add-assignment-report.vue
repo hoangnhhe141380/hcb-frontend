@@ -4,6 +4,9 @@
         <div class="flex items-center justify-between mb-5 text-center">
             <h3 class="font-semibold text-2xl dark:text-white-light mx-auto">Nhận xét bài làm học sinh</h3>
         </div>
+        <div class="my-3"><router-link to="/them-hoc-sinh" class="btn btn-success w-1/3 mx-auto">Nhập bằng file Excel
+            </router-link></div>
+
         <div class="mb-5">
             <flat-pickr @change="getStudents" :config="config" placeholder="Chọn ngày" v-model="today"
                 class="form-input w-1/3"></flat-pickr>

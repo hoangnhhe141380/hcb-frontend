@@ -66,8 +66,8 @@
                                         <div class="flex items-center">
 
                                             <span
-                                                class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Nhận
-                                                xét sau buổi học</span>
+                                                class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Thêm
+                                                NX sau buổi học</span>
                                         </div>
                                     </router-link>
                                 </li>
@@ -76,8 +76,8 @@
                                         <div class="flex items-center">
 
                                             <span
-                                                class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Nhận
-                                                xét bài làm</span>
+                                                class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Thêm
+                                                NX bài làm</span>
                                         </div>
                                     </router-link>
                                 </li>

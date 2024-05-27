@@ -47,11 +47,17 @@ const routes: RouteRecordRaw[] = [
         props: true,
     },
     {
-        path: '/them-nhan-xet-sau-buoi-hoc',
-        component: () => import('../views/add-session-reports.vue'),
-        name: 'add-session-reports',
+        path: '/them-nhan-xet-bai-lam',
+        component: () => import('../views/add-assignment-report.vue'),
+        name: 'add-assignment-report',
         props: true,
     },
+    // {
+    //     path: '/them-nhan-xet-sau-buoi-hoc',
+    //     component: () => import('../views/add-session-report.vue'),
+    //     name: 'add-session-reports',
+    //     props: true,
+    // },
     {
         path: '/lessons/add',
         component: () => import('../views/add-lesson.vue'),
