@@ -137,7 +137,7 @@ interface Report {
     }
 }
 
-interface Student {
+export interface Student {
     studentId: string,
     fullName: string,
     hasAssignmentReport: boolean

@@ -28,12 +28,18 @@ const routes: RouteRecordRaw[] = [
         name: 'add-assignment-report',
         props: true,
     },
-    // {
-    //     path: '/nhan-xet-bai-lam',
-    //     component: () => import('../views/add-assignment-report.vue'),
-    //     name: 'add-assignment-report',
-    //     props: true,
-    // },
+    {
+        path: '/nhan-xet-bai-lam',
+        component: () => import('../views/view-assignment-report.vue'),
+        name: 'view-assignment-report',
+        props: true,
+    },
+    {
+        path: '/nhan-xet-bai-lam/:id',
+        component: () => import('../views/view-assignment-report-detail.vue'),
+        name: 'view-assignment-report-detail',
+        props: true,
+    },
     {
         path: '/nhan-xet-sau-buoi-hoc',
         component: () => import('../views/session-reports.vue'),

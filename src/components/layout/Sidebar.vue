@@ -103,7 +103,7 @@
                                     </router-link>
                                 </li>
                                 <li class="nav-item">
-                                    <router-link to="" class="group" @click="toggleMobileMenu">
+                                    <router-link to="/nhan-xet-bai-lam" class="group" @click="toggleMobileMenu">
                                         <div class="flex items-center">
 
                                             <span
