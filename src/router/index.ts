@@ -132,6 +132,12 @@ const routes: RouteRecordRaw[] = [
         name: 'users-add',
         props: true
     },
+    {
+        path: '/nguoi-dung/:username',
+        component: () => import('../views/users-detail.vue'),
+        name: 'users-detail',
+        props: true
+    },
     
     // authentication
     {

@@ -86,8 +86,6 @@
     });
 
     const handleAddUser = async () => {
-        console.log(newUser.value);
-
         const apiUrl = import.meta.env.VITE_APP_API_URL + 'admin/users';
         const headers = {
             Authorization: 'Bearer ' + localStorageHelper.get(LOCAL_STORAGE_AUTH),
