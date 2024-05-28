@@ -151,7 +151,7 @@ async function sendReports() {
 
     const dataToSend = students.value.map(s => ({
         studentId: s.id,
-        date: year + '-' + month + '-' + day,
+        date: day + '-' + month + '-' + year,
         homeworkCompletion: s.homeworkCompletion,
         onTime: s.onTime,
         studyingAttitude: s.att1 + '\n' + s.att2 + '\n' + s.att3,

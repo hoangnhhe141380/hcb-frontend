@@ -2,11 +2,11 @@
     <div>
         <div class="panel pb-0 mt-6">
             <div class="flex md:items-center md:flex-row flex-col mb-5 gap-5">
-                <!-- <router-link to="/students/add" class="btn btn-success w-1/6">Thêm
+                <router-link to="/nguoi-dung/them" class="btn btn-success w-1/6">Thêm
                 </router-link>
                 <div class="ltr:ml-auto rtl:mr-auto">
                     <input v-model="search" type="text" class="form-input w-auto" placeholder="Tìm theo tên" />
-                </div> -->
+                </div>
             </div>
             <div class="datatable">
                 <vue3-datatable :rows="rows" :columns="cols" :totalRows="rows?.length" :search="search" :sortable="true"
