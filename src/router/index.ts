@@ -35,7 +35,7 @@ const routes: RouteRecordRaw[] = [
         props: true,
     },
     {
-        path: '/nhan-xet-bai-lam/:id',
+        path: '/nhan-xet-bai-lam/:date/:id',
         component: () => import('../views/view-assignment-report-detail.vue'),
         name: 'view-assignment-report-detail',
         props: true,
@@ -116,7 +116,8 @@ const routes: RouteRecordRaw[] = [
         path: '/nhan-xet/:slug',
         component: () => import('../views/guest/reports.vue'),
         name: 'guest-reports',
-        meta: { layout: 'auth',
+        meta: {
+            layout: 'auth',
             requiresAuth: false,
         },
     },
@@ -138,7 +139,7 @@ const routes: RouteRecordRaw[] = [
         name: 'users-detail',
         props: true
     },
-    
+
     // authentication
     {
         path: '/dang-nhap',
@@ -172,7 +173,8 @@ router.beforeEach((to, from, next) => {
     }
     if (to.matched.some(route => route.meta.requiresAuth)) {
         if (!localStorageHelper.get(LOCAL_STORAGE_AUTH)) {
-            next({ name: 'boxed-signin' })}
+            next({ name: 'boxed-signin' })
+        }
         next(true);
     }
     next(true);

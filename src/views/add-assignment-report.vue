@@ -117,7 +117,7 @@ const config = ref({
 
 let today = ref(dayjs().format('DD/MM/YYYY'));
 
-interface Report {
+export interface Report {
     studentId: string,
     date: string,
     homework: {
